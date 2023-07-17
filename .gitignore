@@ -1,2 +1,5 @@
 *.exe
 *.dll
+*.out
+*.o
+*.obj
