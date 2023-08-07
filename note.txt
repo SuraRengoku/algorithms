@@ -1,3 +1,5 @@
+在code-runner的编译命令里添加framework时，直接添加在编译器名称后面，否则不识别
+
 Master Formula:    
     满足master公式的算法均可以使用以下规则求解时间复杂度
     master formula:T(N)=a*T(N/b)+O(N^d)
