@@ -1,4 +1,5 @@
 #include <fcntl.h>
+#include <cstdlib>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -215,6 +216,7 @@ int main(int argc, char** argv)
     clReleaseKernel(kernel);
     clReleaseCommandQueue(commands);
     clReleaseContext(context);
- 
+    
+    printf("Done.\n");
     return 0;
 }
