@@ -85,13 +85,49 @@ Node* reverse(Node* head){
     head->next=pre;
     return head;
 }
+/**
+ * @brief make sure that both lists are in order
+ * @param head1
+ * @param head2
+ * @return the head of common list
+*/
+auto findcommon(Node* head1, Node* head2)->Node*{
+    Node* commonhead=list_init();
+    int index=0;
+    Node* pos_node1=head1->next;
+    Node* pos_node2=head2->next;
+    while(pos_node1->next!=nullptr&&pos_node2->next!=nullptr){
+        if(pos_node1->data<pos_node2->data){
+            cout<<"pos_node1.next"<<" ";
+            pos_node1=pos_node1->next;
+            continue;
+        }
+        if(pos_node1->data>pos_node2->data){
+            pos_node2=pos_node2->next;
+            continue;
+        }
+        if(pos_node1->data==pos_node2->data){
+            pos_node1=pos_node1->next;
+            pos_node2=pos_node2->next;
+            cout<<pos_node1->data<<" ";
+            commonhead=insert(commonhead,index++,pos_node1->data);
+        }
+    }
+    return commonhead;
+}
 
 int main(){
     Node* head=list_init();
     for(int i=0;i<10;i++)
         head=insert(head,i,i);
     printList(head);
-    head=reverse(head);
-    printList(head);
+    Node* head1=reverse(head);
+    printList(head1);
+    Node* head2=list_init();
+    for(int j=2;j<15;j++,j++)
+        head2=insert(head2,j,j);
+    printList(head2);
+    // Node* commonhead=findcommon(head,head2);
+    // printList(commonhead);
     return 0;
 }
