@@ -17,7 +17,7 @@ Node* init_list(){
 Node* insert(Node* head, int pos, int data){
     if(head==nullptr)
         pos=0;
-    if(pos>head->data)
+    if(pos>head->data||pos<0)
         pos=head->data;
     Node* newnode=new Node;
     newnode->data=data;
