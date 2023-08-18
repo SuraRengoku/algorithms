@@ -77,11 +77,26 @@ void printList(Node* head){
     cout<<"\n";
 }
 
+void printListpoint(Node* head){
+    try{
+        if(head==nullptr)
+            throw runtime_error("list does not exist");
+        Node* pos_node=head->next;
+        while(pos_node!=nullptr){
+            cout<<pos_node->data<<" ";
+            pos_node=pos_node->next;
+        }
+        cout<<"\n";
+    }catch(runtime_error err){
+        cerr<<err.what()<<"\n";
+    }
+}
+
 Node* reverse(Node* head){
     if(head==nullptr)
         return head;
     Node* prev=nullptr;
-    Node* cur=head;
+    Node* cur=head->next;
     while(cur!=nullptr){
         Node* nexttemp=cur->next;
         cur->next=prev;
@@ -90,6 +105,7 @@ Node* reverse(Node* head){
         cur=nexttemp;
     }
     head->next=prev;
+    prev->prev=head;
     return head;
 }
 
@@ -100,9 +116,11 @@ int main(){
     head=insert(head,9,11);
     head=insert(head,6,12);
     head=remove(head,4);
-    printList(head);
+    printListpoint(head);
+    // printList(head);
     // cout<<head->next->next->next->next->next->next->next->prev->data;
     head=reverse(head);
-    printList(head);
+    printListpoint(head);
+    // printList(head);
     return 0;
 }
