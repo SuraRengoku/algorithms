@@ -71,11 +71,26 @@ void printList(Node* head){
     cout<<"\n";
 }
 
+void printListpointer(Node* head){
+    try{
+        if(head==nullptr)
+            throw runtime_error("list does not exist");
+        Node* pos_node=head->next;
+        while(pos_node!=nullptr){
+            cout<<pos_node->data<<" ";
+            pos_node=pos_node->next;
+        }
+        cout<<"\n";
+    }catch(runtime_error err){
+        cerr<<err.what()<<"\n";
+    }
+}
+
 Node* reverse(Node* head){
     if(head==nullptr)
         return head;
     Node* pre=nullptr;
-    Node* cur=head;
+    Node* cur=head->next;//从第一个节点开始（非头节点）
     while(cur!=nullptr){
         Node* nexttemp=cur->next;
         cur->next=pre;
@@ -96,9 +111,8 @@ auto findcommon(Node* head1, Node* head2)->Node*{
     int index=0;
     Node* pos_node1=head1->next;
     Node* pos_node2=head2->next;
-    while(pos_node1->next!=nullptr&&pos_node2->next!=nullptr){
+    while(pos_node1!=nullptr&&pos_node2!=nullptr){
         if(pos_node1->data<pos_node2->data){
-            cout<<"pos_node1.next"<<" ";
             pos_node1=pos_node1->next;
             continue;
         }
@@ -107,10 +121,9 @@ auto findcommon(Node* head1, Node* head2)->Node*{
             continue;
         }
         if(pos_node1->data==pos_node2->data){
+            commonhead=insert(commonhead,index++,pos_node1->data);
             pos_node1=pos_node1->next;
             pos_node2=pos_node2->next;
-            cout<<pos_node1->data<<" ";
-            commonhead=insert(commonhead,index++,pos_node1->data);
         }
     }
     return commonhead;
@@ -122,11 +135,12 @@ int main(){
         head=insert(head,i,i);
     printList(head);
     Node* head1=reverse(head);
-    printList(head1);
+    // printList(head1);
     Node* head2=list_init();
     for(int j=2;j<15;j++,j++)
         head2=insert(head2,j,j);
-    printList(head2);
+    // printList(head2);
+    printListpointer(head);
     // Node* commonhead=findcommon(head,head2);
     // printList(commonhead);
     return 0;
