@@ -56,7 +56,7 @@ int RandNumGene(pair<int,int> p){
     int rangel=p.first;
     int ranger=p.second;
     srand((unsigned)time(NULL));
-    int randnum=(int)rand()%(ranger-rangel);
+    int randnum=(int)rand()%(ranger-rangel)+rangel;
     return randnum;
 }
 int RandNumGene(pair<int,int> p,int s){

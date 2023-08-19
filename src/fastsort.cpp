@@ -76,12 +76,15 @@ int main(){
     int *arr=result.first;
     int len=result.second;
     int test[]={-6,-7,8,11,-5,13,-4,-5};
-    bprint(arr,len);
-    // bprint(test,8);
+    // bprint(arr,len);
+    bprint(test,8);
     // fastsort1(arr,0,len-1);
-    fastsort2(arr,0,len-1);
+    // fastsort2(arr,0,len-1);
+    // fastsort3(arr,0,len-1);
     // fastsort1(test,0,7);
-    bprint(arr,len);
-    // bprint(test,8);
+    // fastsort2(test,0,7);
+    fastsort3(test,0,7);
+    // bprint(arr,len);
+    bprint(test,8);
     return 0;
 }
