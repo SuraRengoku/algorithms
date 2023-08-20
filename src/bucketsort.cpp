@@ -45,36 +45,60 @@ void bucketsort(int *a, int length, int range, int radix){
     }catch(runtime_error err){
         cerr<<err.what()<<"\n";
     }
-    const int num=range/radix+range%radix?1:0;
-    vector<int> buckets[num];
+    const int num=range/radix+(range%radix?1:0);
+    vector<vector<int>> buckets;
+    for(int k=0;k<num;k++){
+        vector<int> bucket;
+        buckets.push_back(bucket);
+    }
+    // cout<<"number of buckets: "<<buckets.size();
     for(int i=0;i<length;i++){
         int bucketnum=a[i]/radix;
-        buckets[bucketnum].push_back(a[i]);
+        buckets.at(bucketnum).push_back(a[i]);
     }
-    for(int j=0;j<num;j++)
-        sort(buckets[j].begin(),buckets[j].end());
+    // for(int j=0;j<buckets.size();j++){
+    //     for(int m=0;m<buckets.at(j).size();m++)
+    //         cout<<buckets.at(j).at(m)<<" ";
+    //     cout<<"\n";
+    // }
     int ind=0;
-    while(ind<length){
-        for(int k=0;k<num;k++){
-            if(buckets[k].empty())
-                continue;
-            else{
-                for(int m=0;m<buckets[k].size();m++)
-                    a[ind++]=buckets[k].at(m);
-            }
-        }
+    for(int j=0;j<buckets.size();j++){
+        int *arr=new int[buckets[j].size()];
+        // cout<<buckets[j].size()<<"\n";
+        for(int n=0;n<buckets[j].size();n++)
+            arr[n]=buckets[j][n];
+        // bprint(arr,buckets[j].size());
+        fastsort(arr,0,buckets[j].size()-1);
+        int tempind=0;
+        while(tempind<buckets[j].size())
+            a[ind++]=arr[tempind++];
     }
+    // int ind=0;
+    // while(ind<length){
+    //     for(int k=0;k<num;k++){
+    //         if(buckets[k].empty())
+    //             continue;
+    //         else{
+    //             for(int m=0;m<buckets[k].size();m++)
+    //                 a[ind++]=buckets[k].at(m);
+    //         }
+    //     }
+    // }
 }
 
 int main(){
-    int Maxsize=20;
-    int Maxvalue=20;
+    int Maxsize=300;
+    int Maxvalue=300;
     pair<int*,int> result=generator(Maxsize,Maxvalue,1);
     int *arr=result.first;
     int len=result.second;
+    int test[]={4,1,3,7,3,2,6,9,5,1};
     bprint(arr, len);
-    bucketsort(arr, len, Maxvalue, 10);
+    // bprint(test,10);
+    bucketsort(arr, len, Maxvalue, 20);
+    // bucketsort(test, 10, 10, 2);
     // fastsort(arr, 0, len-1);
     bprint(arr, len);
+    // bprint(test,10);
     return 0;
 }
