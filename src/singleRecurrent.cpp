@@ -1,4 +1,6 @@
-#include "generator.cpp"
+#ifndef singleRecurrent_h
+#define singleRecurrent_h
+#include "generator.h"
 //有头节点的单循环链表
 struct Node{
     int data;
@@ -87,15 +89,16 @@ void printlist(Node* head){
     cout<<'\n';
 }
 
-int main(){
-    Node* head=init();
-    for(int i=0;i<10;i++)
-        head=insert(head,i,i);
-    printlist(head);
-    head=modify(head,6,8);
-    head=remove(head,4);
-    printlist(head);
-    head=reverse(head);
-    printlist(head);
-    return 0;
-}
+// int main(){
+//     Node* head=init();
+//     for(int i=0;i<10;i++)
+//         head=insert(head,i,i);
+//     printlist(head);
+//     head=modify(head,6,8);
+//     head=remove(head,4);
+//     printlist(head);
+//     head=reverse(head);
+//     printlist(head);
+//     return 0;
+// }
+#endif

@@ -1,14 +1,17 @@
-#include"generator.cpp"
+#ifndef doublelinkedlist_h
+#define doublelinkedlist_h
+#include "generator.h"
 
 struct Node{
-    public:
-        int data;//在头节点中data表示该链表的size
-        Node* next;
+    int data;
+    Node* prev;
+    Node* next;
 };
 
-Node* list_init(){
+Node* init_list(){
     Node* head=new Node;
     head->data=0;
+    head->prev=nullptr;
     head->next=nullptr;
     return head;
 }
@@ -18,14 +21,18 @@ Node* insert(Node* head, int pos, int data){
         pos=0;
     if(pos>head->data||pos<0)
         pos=head->data;
-    Node* new_node=new Node;
-    new_node->data=data;
-    new_node->next=nullptr;
+    Node* newnode=new Node;
+    newnode->data=data;
+    newnode->next=nullptr;
+    newnode->prev=nullptr;
     Node* pos_node=head;
     for(int i=0;i<pos;i++)
         pos_node=pos_node->next;
-    new_node->next=pos_node->next;
-    pos_node->next=new_node;
+    newnode->next=pos_node->next;
+    pos_node->next=newnode;
+    newnode->prev=pos_node;
+    if(newnode->next!=nullptr)
+        newnode->next->prev=newnode;
     head->data++;
     return head;
 }
@@ -37,6 +44,7 @@ Node* remove(Node* head, int pos){
     for(int i=0;i<pos;i++)
         pos_node=pos_node->next;
     pos_node->next=pos_node->next->next;
+    pos_node->next->prev=pos_node;
     head->data--;
     return head;
 }
@@ -53,7 +61,7 @@ Node* modify(Node* head, int pos, int data){
 
 int get(Node* head, int pos){
     if(head==nullptr||pos>head->data-1)
-        return -1;//-1表示无效值
+        return -1;
     Node* pos_node=head;
     for(int i=0;i<=pos;i++)
         pos_node=pos_node->next;
@@ -71,7 +79,7 @@ void printList(Node* head){
     cout<<"\n";
 }
 
-void printListpointer(Node* head){
+void printListpoint(Node* head){
     try{
         if(head==nullptr)
             throw runtime_error("list does not exist");
@@ -89,59 +97,33 @@ void printListpointer(Node* head){
 Node* reverse(Node* head){
     if(head==nullptr)
         return head;
-    Node* pre=nullptr;
-    Node* cur=head->next;//从第一个节点开始（非头节点）
+    Node* prev=nullptr;
+    Node* cur=head->next;
     while(cur!=nullptr){
         Node* nexttemp=cur->next;
-        cur->next=pre;
-        pre=cur;
+        cur->next=prev;
+        cur->prev=nexttemp;
+        prev=cur;
         cur=nexttemp;
     }
-    head->next=pre;
+    head->next=prev;
+    prev->prev=head;
     return head;
 }
-/**
- * @brief make sure that both lists are in order
- * @param head1
- * @param head2
- * @return the head of common list
-*/
-auto findcommon(Node* head1, Node* head2)->Node*{
-    Node* commonhead=list_init();
-    int index=0;
-    Node* pos_node1=head1->next;
-    Node* pos_node2=head2->next;
-    while(pos_node1!=nullptr&&pos_node2!=nullptr){
-        if(pos_node1->data<pos_node2->data){
-            pos_node1=pos_node1->next;
-            continue;
-        }
-        if(pos_node1->data>pos_node2->data){
-            pos_node2=pos_node2->next;
-            continue;
-        }
-        if(pos_node1->data==pos_node2->data){
-            commonhead=insert(commonhead,index++,pos_node1->data);
-            pos_node1=pos_node1->next;
-            pos_node2=pos_node2->next;
-        }
-    }
-    return commonhead;
-}
 
-int main(){
-    Node* head=list_init();
-    for(int i=0;i<10;i++)
-        head=insert(head,i,i);
-    printList(head);
-    Node* head1=reverse(head);
-    // printList(head1);
-    Node* head2=list_init();
-    for(int j=2;j<15;j++,j++)
-        head2=insert(head2,j,j);
-    // printList(head2);
-    printListpointer(head);
-    // Node* commonhead=findcommon(head,head2);
-    // printList(commonhead);
-    return 0;
-}
+// int main(){
+//     Node* head=init_list();
+//     for(int i=0;i<10;i++)
+//         head=insert(head,i,i);
+//     head=insert(head,9,11);
+//     head=insert(head,6,12);
+//     head=remove(head,4);
+//     printListpoint(head);
+//     // printList(head);
+//     // cout<<head->next->next->next->next->next->next->next->prev->data;
+//     head=reverse(head);
+//     printListpoint(head);
+//     // printList(head);
+//     return 0;
+// }
+#endif

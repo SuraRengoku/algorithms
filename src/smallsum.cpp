@@ -1,4 +1,4 @@
-#include"generator.cpp"
+#include"generator.h"
 
 //暴力解法用于验证，时间复杂度O(N^2)
 void Force_(int *a,int l){

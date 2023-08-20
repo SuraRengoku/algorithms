@@ -1,3 +1,5 @@
+#ifndef generator_h
+#define generator_h
 #include<iostream>
 #include<cstdlib>
 #include<time.h>
@@ -79,3 +81,4 @@ int RandNumGene(pair<int,int> p,int s){
 //     bprint(arr,len);
 //     return 0;
 // }
+#endif

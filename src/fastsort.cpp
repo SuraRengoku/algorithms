@@ -1,4 +1,4 @@
-#include"generator.cpp"
+#include"generator.h"
 
 //快速排序 空间复杂度O(log(2,N))，最差时O(N)
 //分组，小于等于在左，大于在右

@@ -1,4 +1,6 @@
-#include "generator.cpp"
+#ifndef doubleRecurrent_h
+#define doubleRecurrent_h
+#include "generator.h"
 
 struct Node{
     int data;
@@ -139,16 +141,17 @@ Node* reverse(Node* head){
     }
 }
 
-int main(){
-    Node* head=init();
-    for(int i=0;i<10;i++)
-        head=insert(head,i,i);
-    printlist(head);
-    head=remove(head,4);
-    // reversePrint(head);
-    printlist(head);
-    head=reverse(head);
-    printlist(head);
-    reversePrint(head);
-    return 0;
-}
+// int main(){
+//     Node* head=init();
+//     for(int i=0;i<10;i++)
+//         head=insert(head,i,i);
+//     printlist(head);
+//     head=remove(head,4);
+//     // reversePrint(head);
+//     printlist(head);
+//     head=reverse(head);
+//     printlist(head);
+//     reversePrint(head);
+//     return 0;
+// }
+#endif
