@@ -1,6 +1,6 @@
-#ifndef singleRecurrent_h
-#define singleRecurrent_h
-#include "generator.h"
+#ifndef singleRecurrent_hpp
+#define singleRecurrent_hpp
+#include "generator.hpp"
 //有头节点的单循环链表
 struct Node{
     int data;

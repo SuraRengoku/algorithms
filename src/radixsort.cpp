@@ -1,4 +1,4 @@
-#include"generator.h"
+#include"generator.hpp"
 //基排序不是比较排序，同计数排序一样，需要根据数据状况来使用
 //时间复杂度O(N),额外空间复杂度O(M)
 int findmax(int *a,int l){

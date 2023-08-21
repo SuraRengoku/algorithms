@@ -1,6 +1,6 @@
-#ifndef singlelinkedlist_h
-#define singlelinkedlist_h
-#include"generator.h"
+#ifndef singlelinkedlist_hpp
+#define singlelinkedlist_hpp
+#include"generator.hpp"
 
 struct Node{
     public:
@@ -76,14 +76,14 @@ void printList(Node* head){
 void printListpointer(Node* head){
     try{
         if(head==nullptr)
-            throw runtime_error("list does not exist");
+            throw std::runtime_error("list does not exist");
         Node* pos_node=head->next;
         while(pos_node!=nullptr){
             cout<<pos_node->data<<" ";
             pos_node=pos_node->next;
         }
         cout<<"\n";
-    }catch(runtime_error err){
+    }catch(std::runtime_error err){
         cerr<<err.what()<<"\n";
     }
 }

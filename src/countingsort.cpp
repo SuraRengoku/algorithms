@@ -1,4 +1,4 @@
-#include"generator.h"
+#include"generator.hpp"
 //计数排序常应用于已知数据状况的情况下，比较有局限性
 //时间复杂度O(N)
 static int indexa=0;

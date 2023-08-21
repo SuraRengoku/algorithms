@@ -1,4 +1,4 @@
-#include"generator.h"
+#include"generator.hpp"
 //打印所有逆序对的数量
 
 //暴力解法用于验证

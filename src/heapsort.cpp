@@ -1,4 +1,4 @@
-#include"generator.h"
+#include"generator.hpp"
 //O(log(2,N))
 //插入值时保证仍然是大根堆
 void heapinsert(int *a,int index){

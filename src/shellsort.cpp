@@ -1,4 +1,4 @@
-#include "generator.h"
+#include "generator.hpp"
 //希尔排序是插入排序的改进版本，也被称为缩小增量排序
 //希尔排序不是一个稳定排序
 void swap(int *a, int m, int n){

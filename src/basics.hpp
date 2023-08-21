@@ -1,4 +1,11 @@
-#include"basics.h"
+#ifndef BASICS_HPP
+#define BASICS_HPP
+
+#include<iostream>
+#include<climits>
+#include<unistd.h>
+#include<vector>
+#include<algorithm>
 
 void bswap(int *a,int m,int n){
     a[m]^=a[n];
@@ -14,7 +21,9 @@ void bswap_nonzero(int *a,int m,int n){
 }
 void bprint(int *a,int l){
     for(int i=0;i<l;i++){
-        cout<<a[i]<<" ";
+        std::cout<<a[i]<<" ";
     }
-    cout<<"\n";
+    std::cout<<"\n";
 }
+
+#endif

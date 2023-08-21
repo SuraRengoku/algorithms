@@ -1,4 +1,4 @@
-#include"generator.h"
+#include"generator.hpp"
 //递归思想
 //O(N*log(2,N))
 //选择排序等O(N^2时间复杂度的排序在排序过程中浪费了大量了比较信息，重复工作数次

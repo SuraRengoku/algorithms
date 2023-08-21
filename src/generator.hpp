@@ -6,11 +6,13 @@
 #include<tuple>
 //tuple可以使得函数返回至少三个返回值
 //返回两个返回值时使用pair即可 不需要用tuple
-#include"basics.h"
-#include"basics.cpp"
+
+#include"basics.hpp"
 using std::cout;
+using std::cerr;
 using std::endl;
 using std::cin;
+using std::pair;
 
 int ToSign(int a,bool s){
     //s=1,+;s=0,-
@@ -26,7 +28,7 @@ pair<int*,int> generator(int Maxsize,int Maxvalue){
     for(int i=0;i<len;i++){
         arr[i]=(int)rand()%Maxvalue-(int)rand()%Maxvalue;
     }
-    pair<int*,int> result=make_pair(arr,len);
+    pair<int*,int> result=std::make_pair(arr,len);
     return result;
 }
 pair<int*,int> generator(int Maxsize,int Maxvalue,bool s){
@@ -40,7 +42,7 @@ pair<int*,int> generator(int Maxsize,int Maxvalue,bool s){
         else
             arr[i]=ToSign((int)rand()%Maxvalue-(int)rand()%Maxvalue,s);
     }
-    pair<int*,int> result=make_pair(arr,len);
+    pair<int*,int> result=std::make_pair(arr,len);
     return result;
 }
 pair<int*,int> generator(int Maxsize,int Maxvalue,int Minvalue){
@@ -51,7 +53,7 @@ pair<int*,int> generator(int Maxsize,int Maxvalue,int Minvalue){
     for(int i=0;i<len;i++){
         arr[i]=ToSign(((int)rand()%diff-(int)rand()%diff),1)+Minvalue;
     }
-    pair<int*,int> result=make_pair(arr,len);
+    pair<int*,int> result=std::make_pair(arr,len);
     return result;
 }
 int RandNumGene(pair<int,int> p){

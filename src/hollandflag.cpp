@@ -1,4 +1,4 @@
-#include"generator.h"
+#include"generator.hpp"
 
 //小于等于在左边，大于在右边
 void arrange1(int *a,int l,int num){

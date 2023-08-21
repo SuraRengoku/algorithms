@@ -1,5 +1,5 @@
-#include"basics.h"
-#include"basics.cpp"
+#include"basics.hpp"
+// #include"basics.cpp"
 
 struct Str{
     virtual void foo();

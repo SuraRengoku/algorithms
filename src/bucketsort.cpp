@@ -1,4 +1,4 @@
-#include "generator.h"
+#include "generator.hpp"
 //桶排序的速度很大程度上取决于每个桶内采用的排序算法，这里使用快速排序
 
 //荷兰国旗分组

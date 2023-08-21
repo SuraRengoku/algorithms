@@ -1,6 +1,7 @@
-#ifndef doubleRecurrent_h
-#define doubleRecurrent_h
-#include "generator.h"
+#ifndef doubleRecurrent_hpp
+#define doubleRecurrent_hpp
+
+#include "generator.hpp"
 
 struct Node{
     int data;

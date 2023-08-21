@@ -1,6 +1,7 @@
-#ifndef doublelinkedlist_h
-#define doublelinkedlist_h
-#include "generator.h"
+#ifndef doublelinkedlist_hpp
+#define doublelinkedlist_hpp
+
+#include "generator.hpp"
 
 struct Node{
     int data;
