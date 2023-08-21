@@ -45,13 +45,27 @@ struct Stack{
             cerr<<err.what()<<"\n";
         }
     };
+    auto pop_get()->T const{
+        try{
+            if(!this->empty()){
+                StackNode<T>* tempNode=this->topNode;
+                this->topNode=this->topNode->next;
+                return tempNode->data;
+                delete tempNode;
+            }else
+                throw std::runtime_error("this stack is empty");
+        }catch(std::runtime_error err){
+            cerr<<err.what()<<"\n";
+            return -1;
+        }
+    }
     auto empty()->bool const{
         return this->topNode==nullptr;
-    }
+    };
     ~Stack(){
         while(!this->empty())
             this->pop();
-    }
+    };
 };
 
 #endif
