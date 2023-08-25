@@ -41,14 +41,14 @@ void fastsort(int *a, int l, int r){
 void bucketsort(int *a, int length, int range, int radix){
     try{
         if(!radix)
-            throw runtime_error("radix cannot be zero");
-    }catch(runtime_error err){
+            throw std::runtime_error("radix cannot be zero");
+    }catch(std::runtime_error err){
         cerr<<err.what()<<"\n";
     }
     const int num=range/radix+(range%radix?1:0);
-    vector<vector<int>> buckets;
+    std::vector<std::vector<int>> buckets;
     for(int k=0;k<num;k++){
-        vector<int> bucket;
+        std::vector<int> bucket;
         buckets.push_back(bucket);
     }
     // cout<<"number of buckets: "<<buckets.size();
