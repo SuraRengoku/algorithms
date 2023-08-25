@@ -11,7 +11,6 @@ auto palindrome_not1(Node* head)->bool{
     try{
         if(head==nullptr)
             throw std::runtime_error("list does not exist");
-        
     }catch(std::runtime_error err){
         cerr<<err.what()<<"\n";
     }
@@ -36,14 +35,81 @@ auto palindrome_not1(Node* head)->bool{
             return !flag;
         pos_node=pos_node->next;
     }
-
     return flag;
 }
 
 //快指针回跑法 空间复杂度O(1)
 auto palindrome_not2(Node* head)->bool{
     bool flag=true;
-    
+    try{
+        if(head==nullptr)
+            throw std::runtime_error("list does not exist");
+    }catch(std::runtime_error err){
+        cerr<<err.what()<<"\n";
+    }
+    int nodeNum=nodenum(head);
+    bool odd_=nodeNum%2;
+    Node* slow=head->next;
+    Node* fast=head->next->next;
+
+    while(fast!=nullptr){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    if(odd_){
+        Node* pre=nullptr;
+        //if the recurrence stops, the slow pointer should now point to the middle element;
+        while(slow!=nullptr){
+            Node* nexttemp=slow->next;
+            slow->next=pre;
+            pre=slow;
+            slow=nexttemp;
+        }//现在slow指向末尾节点
+        Node* backward=pre;
+        Node* forward=head->next;
+        while(forward!=backward){
+            if(forward->data!=backward->data)
+                return !flag;
+            forward=forward->next;
+            backward=backward->next;
+        }
+        // 还原链表
+        Node* _pre=nullptr;
+        Node* cur=pre;
+        while(cur!=nullptr){
+            Node* nexttemp=cur->next;
+            cur->next=_pre;
+            _pre=cur;
+            cur=nexttemp;
+        }//此时_pre又是中点
+    }else{
+        //if the recurrence stops, the slow pointer should now pointer to the first element of the 2th-partition
+        Node* pre=nullptr;
+        while(slow!=nullptr){
+            Node* nexttemp=slow->next;
+            slow->next=pre;
+            pre=slow;
+            slow=nexttemp;
+        }//该算法在结束时，pre将指向第一个有效的节点
+        Node* backward=pre;
+        Node* forward=head->next;
+        while(forward->next!=backward){
+            if(forward->data!=backward->data)
+                return !flag;
+            forward=forward->next;
+            backward=backward->next;
+        }//停止循环时说明只剩最中间位置没有比对
+        if(forward->data!=backward->data)
+            return !flag;
+        Node* _pre=nullptr;
+        Node* cur=pre;
+        while(cur!=nullptr){
+            Node* nexttemp=cur->next;
+            cur->next=_pre;
+            _pre=cur;
+            cur=nexttemp; 
+        }
+    }   
     return flag;
 }
 
@@ -64,18 +130,26 @@ int main(){
     Node* head4=list_init();
     for(int n=0;n<=10;n++)
         head4=insert(head4,n,n);
-    printList(head1);
-    cout<<(palindrome_not1(head1)?"true":"false")<<"\n";
-    cout<<(palindrome_not2(head1)?"true":"false")<<"\n";
-    printList(head2);
-    cout<<(palindrome_not1(head2)?"true":"false")<<"\n";
+    printListpointer(head1);
+    // cout<<(palindrome_not1(head1)?"true":"false")<<"\n";
+    // cout<<(palindrome_not2(head1)?"true":"false")<<"\n";
+    cout<<"复原性验证：";
+    printListpointer(head1);
+    printListpointer(head2);
+    // cout<<(palindrome_not1(head2)?"true":"false")<<"\n";
     cout<<(palindrome_not2(head2)?"true":"false")<<"\n";
-    printList(head3);
-    cout<<(palindrome_not1(head3)?"true":"false")<<"\n";
+    cout<<"复原性验证：";
+    printListpointer(head2);
+    printListpointer(head3);
+    // cout<<(palindrome_not1(head3)?"true":"false")<<"\n";
     cout<<(palindrome_not2(head3)?"true":"false")<<"\n";
-    printList(head4);
-    cout<<(palindrome_not1(head4)?"true":"false")<<"\n";
+    cout<<"复原性验证：";
+    printListpointer(head3);
+    printListpointer(head4);
+    // cout<<(palindrome_not1(head4)?"true":"false")<<"\n";
     cout<<(palindrome_not2(head4)?"true":"false")<<"\n";
+    cout<<"复原性验证：";
+    printListpointer(head4);
     //对于只有一个或两个节点的链表鲁棒性良好
     // Node* head5=list_init();
     // head5=insert(head5,10,10);

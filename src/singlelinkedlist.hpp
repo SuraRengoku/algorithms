@@ -62,6 +62,23 @@ int get(Node* head, int pos){
     return pos_node->data;
 }
 
+auto nodenum(Node* head)->int{
+    try{
+        if(head==nullptr)
+            throw std::runtime_error("list does not exist");
+    }catch(std::runtime_error err){
+        cerr<<err.what()<<"\n";
+    }
+    Node* pos_node=head->next;
+    int num=0;
+    while(pos_node!=nullptr){
+        num++;
+        pos_node=pos_node->next;
+    }
+
+    return num;
+}
+
 void printList(Node* head){
     if(head==nullptr)
         return;
