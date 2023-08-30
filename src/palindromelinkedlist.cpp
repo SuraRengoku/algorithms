@@ -49,11 +49,13 @@ auto palindrome_not2(Node* head)->bool{
     }
     int nodeNum=nodenum(head);
     bool odd_=nodeNum%2;
-    Node* slow=head->next;
-    Node* fast=head->next->next;
+    Node* slow=head->next;//慢指针
+    Node* fast=head->next->next;//快指针
 
     while(fast!=nullptr){
         slow=slow->next;
+        if(fast->next==nullptr)
+            break;
         fast=fast->next->next;
     }
     if(odd_){
@@ -68,8 +70,10 @@ auto palindrome_not2(Node* head)->bool{
         Node* backward=pre;
         Node* forward=head->next;
         while(forward!=backward){
-            if(forward->data!=backward->data)
-                return !flag;
+            if(forward->data!=backward->data){
+                flag=!flag;
+                break;
+            }//return !flag;会导致后续复原不执行
             forward=forward->next;
             backward=backward->next;
         }
@@ -90,17 +94,17 @@ auto palindrome_not2(Node* head)->bool{
             slow->next=pre;
             pre=slow;
             slow=nexttemp;
-        }//该算法在结束时，pre将指向第一个有效的节点
+        }//该算法在结束时，pre将指向后半部分第一个有效的节点
         Node* backward=pre;
         Node* forward=head->next;
-        while(forward->next!=backward){
-            if(forward->data!=backward->data)
-                return !flag;
+        while(backward!=nullptr){
+            if(forward->data!=backward->data){
+                flag=!flag;
+                break;
+            }
             forward=forward->next;
             backward=backward->next;
-        }//停止循环时说明只剩最中间位置没有比对
-        if(forward->data!=backward->data)
-            return !flag;
+        }
         Node* _pre=nullptr;
         Node* cur=pre;
         while(cur!=nullptr){
@@ -132,22 +136,22 @@ int main(){
         head4=insert(head4,n,n);
     printListpointer(head1);
     // cout<<(palindrome_not1(head1)?"true":"false")<<"\n";
-    // cout<<(palindrome_not2(head1)?"true":"false")<<"\n";
+    cout<<(palindrome_not2(head1)?"true":"false")<<"\n";//false
     cout<<"复原性验证：";
     printListpointer(head1);
     printListpointer(head2);
     // cout<<(palindrome_not1(head2)?"true":"false")<<"\n";
-    cout<<(palindrome_not2(head2)?"true":"false")<<"\n";
+    cout<<(palindrome_not2(head2)?"true":"false")<<"\n";//true
     cout<<"复原性验证：";
     printListpointer(head2);
     printListpointer(head3);
     // cout<<(palindrome_not1(head3)?"true":"false")<<"\n";
-    cout<<(palindrome_not2(head3)?"true":"false")<<"\n";
+    cout<<(palindrome_not2(head3)?"true":"false")<<"\n";//true
     cout<<"复原性验证：";
     printListpointer(head3);
     printListpointer(head4);
     // cout<<(palindrome_not1(head4)?"true":"false")<<"\n";
-    cout<<(palindrome_not2(head4)?"true":"false")<<"\n";
+    cout<<(palindrome_not2(head4)?"true":"false")<<"\n";//false
     cout<<"复原性验证：";
     printListpointer(head4);
     //对于只有一个或两个节点的链表鲁棒性良好
