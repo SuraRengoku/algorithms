@@ -1,7 +1,7 @@
 #ifndef singlelinkedlist_hpp
 #define singlelinkedlist_hpp
-#include"generator.hpp"
-
+#include<iostream>
+using namespace std;
 struct Node{
     public:
         int data;//在头节点中data表示该链表的size
@@ -67,7 +67,7 @@ auto nodenum(Node* head)->int{
         if(head==nullptr)
             throw std::runtime_error("list does not exist");
     }catch(std::runtime_error err){
-        cerr<<err.what()<<"\n";
+        std::cerr<<err.what()<<"\n";
     }
     Node* pos_node=head->next;
     int num=0;
@@ -75,7 +75,6 @@ auto nodenum(Node* head)->int{
         num++;
         pos_node=pos_node->next;
     }
-
     return num;
 }
 
@@ -84,6 +83,21 @@ void printList(Node* head){
         return;
     Node* pos_node=head->next;
     for(int i=0;i<head->data;i++){
+        cout<<pos_node->data<<" ";
+        pos_node=pos_node->next;
+    }
+    cout<<"\n";
+}
+
+void printListfromHead(Node* head){
+    try{
+        if(head==nullptr)
+            throw std::runtime_error("list does not exist");
+    }catch(const std::runtime_error& err){
+        cerr<<err.what()<<"\n";
+    }
+    Node* pos_node=head;
+    while(pos_node!=nullptr){
         cout<<pos_node->data<<" ";
         pos_node=pos_node->next;
     }
@@ -101,7 +115,7 @@ void printListpointer(Node* head){
         }
         cout<<"\n";
     }catch(std::runtime_error err){
-        cerr<<err.what()<<"\n";
+        std::cerr<<err.what()<<"\n";
     }
 }
 
