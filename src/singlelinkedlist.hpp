@@ -12,7 +12,7 @@ template<typename T>
 void Exist(T head){
     try{
         if(head==nullptr)
-            throw std::runtime_erro("list does not exist");
+            throw std::runtime_error("list does not exist");
     }catch(const std::runtime_error& err){
         cerr<<err.what()<<"\n";
         throw;
