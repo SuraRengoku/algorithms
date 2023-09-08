@@ -8,6 +8,26 @@ struct Node{
         Node* next;
 };
 
+template<typename T>
+void Exist(T head){
+    try{
+        if(head==nullptr)
+            throw std::runtime_erro("list does not exist");
+    }catch(const std::runtime_error& err){
+        cerr<<err.what()<<"\n";
+        throw;
+    }
+}
+
+template<typename T>
+auto Empty(T head)->bool{
+    Exist<T>(head);
+    if(head->next==nullptr)
+        return true;
+    else
+        return false;
+}
+
 Node* list_init(){
     Node* head=new Node;
     head->data=0;
