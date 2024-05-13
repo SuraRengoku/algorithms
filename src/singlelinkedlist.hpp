@@ -2,9 +2,12 @@
 #define singlelinkedlist_hpp
 #include<iostream>
 using namespace std;
+
+//TODO rewrite
+template<typename T>
 struct Node{
     public:
-        int data;//在头节点中data表示该链表的size
+        T data;//在头节点中data表示该链表的size
         Node* next;
 };
 
@@ -28,22 +31,24 @@ auto Empty(T head)->bool{
         return false;
 }
 
-Node* list_init(){
-    Node* head=new Node;
+template<typename T>
+Node<T>* list_init(){
+    Node<T>* head=new Node<T>;
     head->data=0;
     head->next=nullptr;
     return head;
 }
 
-Node* insert(Node* head, int pos, int data){
+template<typename T>
+Node<T>* insert(Node<T>* head, int pos, int data){
     if(head==nullptr)
         pos=0;
     if(pos>head->data||pos<0)
         pos=head->data;
-    Node* new_node=new Node;
+    Node<T>* new_node=new Node<T>;
     new_node->data=data;
     new_node->next=nullptr;
-    Node* pos_node=head;
+    Node<T>* pos_node=head;
     for(int i=0;i<pos;i++)
         pos_node=pos_node->next;
     new_node->next=pos_node->next;
@@ -52,10 +57,11 @@ Node* insert(Node* head, int pos, int data){
     return head;
 }
 
-Node* remove(Node* head, int pos){
+template<typename T>
+Node<T>* remove(Node<T>* head, int pos){
     if(head==nullptr||pos>head->data-1)
         return head;
-    Node* pos_node=head;
+    Node<T>* pos_node=head;
     for(int i=0;i<pos;i++)
         pos_node=pos_node->next;
     pos_node->next=pos_node->next->next;
@@ -63,33 +69,36 @@ Node* remove(Node* head, int pos){
     return head;
 }
 
-Node* modify(Node* head, int pos, int data){
+template<typename T>
+Node<T>* modify(Node<T>* head, int pos, int data){
     if(head==nullptr||pos>head->data-1)
         return head;
-    Node* pos_node=head;
+    Node<T>* pos_node=head;
     for(int i=0;i<=pos;i++)
         pos_node=pos_node->next;
     pos_node->data=data;
     return head;
 }
 
-int get(Node* head, int pos){
+template<typename T>
+int get(Node<T>* head, int pos){
     if(head==nullptr||pos>head->data-1)
         return -1;//-1表示无效值
-    Node* pos_node=head;
+    Node<T>* pos_node=head;
     for(int i=0;i<=pos;i++)
         pos_node=pos_node->next;
     return pos_node->data;
 }
 
-auto nodenum(Node* head)->int{
+template<typename T>
+auto nodenum(Node<T>* head)->int{
     try{
         if(head==nullptr)
             throw std::runtime_error("list does not exist");
     }catch(std::runtime_error err){
         std::cerr<<err.what()<<"\n";
     }
-    Node* pos_node=head->next;
+    Node<T>* pos_node=head->next;
     int num=0;
     while(pos_node!=nullptr){
         num++;
@@ -98,10 +107,11 @@ auto nodenum(Node* head)->int{
     return num;
 }
 
-void printList(Node* head){
+template<typename T>
+void printList(Node<T>* head){
     if(head==nullptr)
         return;
-    Node* pos_node=head->next;
+    Node<T>* pos_node=head->next;
     for(int i=0;i<head->data;i++){
         cout<<pos_node->data<<" ";
         pos_node=pos_node->next;
@@ -109,14 +119,15 @@ void printList(Node* head){
     cout<<"\n";
 }
 
-void printListfromHead(Node* head){
+template<typename T>
+void printListfromHead(Node<T>* head){
     try{
         if(head==nullptr)
             throw std::runtime_error("list does not exist");
     }catch(const std::runtime_error& err){
         cerr<<err.what()<<"\n";
     }
-    Node* pos_node=head;
+    Node<T>* pos_node=head;
     while(pos_node!=nullptr){
         cout<<pos_node->data<<" ";
         pos_node=pos_node->next;
@@ -124,11 +135,12 @@ void printListfromHead(Node* head){
     cout<<"\n";
 }
 
-void printListpointer(Node* head){
+template<typename T>
+void printListpointer(Node<T>* head){
     try{
         if(head==nullptr)
             throw std::runtime_error("list does not exist");
-        Node* pos_node=head->next;
+        Node<T>* pos_node=head->next;
         while(pos_node!=nullptr){
             cout<<pos_node->data<<" ";
             pos_node=pos_node->next;
@@ -139,13 +151,14 @@ void printListpointer(Node* head){
     }
 }
 
-Node* reverse(Node* head){
+template<typename T>
+Node<T>* reverse(Node<T>* head){
     if(head==nullptr)
         return head;
-    Node* pre=nullptr;
-    Node* cur=head->next;//从第一个节点开始（非头节点）
+    Node<T>* pre=nullptr;
+    Node<T>* cur=head->next;//从第一个节点开始（非头节点）
     while(cur!=nullptr){
-        Node* nexttemp=cur->next;
+        Node<T>* nexttemp=cur->next;
         cur->next=pre;
         pre=cur;
         cur=nexttemp;
@@ -159,11 +172,13 @@ Node* reverse(Node* head){
  * @param head2
  * @return the head of common list
 */
-auto findcommon(Node* head1, Node* head2)->Node*{
-    Node* commonhead=list_init();
+
+template<typename T>
+auto findcommon(Node<T>* head1, Node<T>* head2)->Node<T>*{
+    Node<T>* commonhead=list_init();
     int index=0;
-    Node* pos_node1=head1->next;
-    Node* pos_node2=head2->next;
+    Node<T>* pos_node1=head1->next;
+    Node<T>* pos_node2=head2->next;
     while(pos_node1!=nullptr&&pos_node2!=nullptr){
         if(pos_node1->data<pos_node2->data){
             pos_node1=pos_node1->next;
