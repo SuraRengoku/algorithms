@@ -151,3 +151,78 @@ class ArrayQueue {
         return arr;
     }
 };
+
+template<typename T>
+struct DoublyListNode{
+    T val;
+    DoublyListNode *next;
+    DoublyListNode *prev;
+    DoublyListNode(int val):val(val),prev(nullptr),next(nullptr){}
+};
+
+template<typename T>
+class LinkedListDeque{
+    private:
+        DoublyListNode<T> *front, *rear;
+        int queSize=0;
+    
+    public:
+        LinkedListDeque():front(nullptr),rear(nullptr){}
+        ~LinkedListDeque(){
+            DoublyListNode<T> *pre,*cur=front;
+            while(cur!=nullptr){
+                pre=cur;
+                cur=cur->next;
+                delete pre;
+            }
+        }
+
+        size()->int{
+            return queSize;
+        }
+
+        bool isEmpty(){
+            return queSize==0;
+        }
+
+        void push(T num, bool isFront){
+            DoublyListNode<T> *node=new DoublyListNode<T>(num);
+            if(isEmpty())
+                front=rear=node;
+            else if(isFront){
+                front->pre=node;
+                node->next=front;
+                front=node;//update
+            }else{
+                rear->next=node;
+                node->prev=rear;
+                rear=node;
+            }
+            queSize++;
+        }
+
+        void pushFirst(T num){
+            push(num, true);
+        }
+
+        void pushLast(T num){
+            push(num, false);
+        }
+
+        pop(bool isFront)->T{
+            if(isEmpty())
+                throw out_of_range("queue is empty");
+            T val;
+            
+            if(isFront){
+                val=front->val;
+                DoublyListNode<T> *fNext=front->next;
+                if(fNext!=nullptr){
+                    fNext->prev=nullptr;
+                    front->next=nullptr;
+                }
+                delete front;
+                front=fNext;
+            }
+        }
+};
