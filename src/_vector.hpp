@@ -21,7 +21,7 @@ class _Vector{
 
     public:
         _Vector(){
-            arr=new int[arrCapacity];
+            arr=new T[arrCapacity];
         }
 
         ~_Vector(){
@@ -48,7 +48,7 @@ class _Vector{
             return arr[index];
         }
 
-        void set(int index, int num){
+        void set(int index, T num){
             checkIndex(index);
             arr[index]=num;
         }

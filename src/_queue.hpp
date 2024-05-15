@@ -50,7 +50,7 @@ class LinkedListQueue{
             node->data=num;
             node->next=nullptr;
 
-            if(front==nullptr){
+            if(rear==nullptr){
                 front=node;
                 rear=node;
             }else{
@@ -62,7 +62,8 @@ class LinkedListQueue{
 
         T pop(){
             T num=peek();
-            Node<T> *tmp=front;
+            Node<T> *tmp=new Node<T>();
+            tmp=front;
             front=front->next;
             delete tmp;
             queSize--;
