@@ -60,8 +60,8 @@ class LinkedListQueue{
             queSize++;
         }
 
-        int pop(){
-            int num=peek();
+        T pop(){
+            T num=peek();
             Node<T> *tmp=front;
             front=front->next;
             delete tmp;
@@ -69,7 +69,7 @@ class LinkedListQueue{
             return num;
         }
 
-        int peek(){
+        T peek(){
             if(size()==0)
                 throw out_of_range("ques is empty");
             return front->data;
