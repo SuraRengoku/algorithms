@@ -29,6 +29,14 @@ class LinkedListQueue{
             }
         }
 
+        T first(){
+            return this->front->data;
+        }
+
+        T last(){
+            return this->rear->data;
+        }
+
         int size(){
             return queSize;
         }
@@ -37,7 +45,7 @@ class LinkedListQueue{
             return queSize==0;
         }
 
-        void push(int num){
+        void push(T num){
             Node<T> *node;
             node->data=num;
             node->next=nullptr;

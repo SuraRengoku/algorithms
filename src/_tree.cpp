@@ -2,6 +2,7 @@
 #include<stdexcept>
 #include "_vector.hpp"
 #include "_queue.hpp"
+#include<typeinfo>
 
 template<typename T>
 struct TreeNode{
@@ -11,9 +12,11 @@ struct TreeNode{
     TreeNode(T x):val(x),left(nullptr),right(nullptr){};
 };
 
+
 template<typename T>
 class Tree{
     // private:
+    public:
         TreeNode<T> *root;
 
         void deleteTree(TreeNode<T>* node){
@@ -46,7 +49,7 @@ class Tree{
             queue.push(rootNode);
             _Vector<T> vec;
             while(!queue.isEmpty()){
-                TreeNode<T> *node=queue.front();
+                TreeNode<T> *node=queue.first();
                 queue.pop();
                 vec.add(node->val);
                 if(node->left!=nullptr) queue.push(node->left);
@@ -59,6 +62,6 @@ class Tree{
 int main(){
     Tree<int> *RootNode=new Tree(3);
     std::cout<<RootNode;
-    // _Vector<int> order=RootNode->levelOrder(RootNode->root);
+    _Vector<int> order=RootNode->levelOrder(RootNode->root);
     return 0;
 }
