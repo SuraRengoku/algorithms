@@ -34,7 +34,7 @@ auto Empty(T head)->bool{
 template<typename T>
 Node<T>* list_init(){
     Node<T>* head=new Node<T>;
-    head->data=0;
+    head->data=(T)0;
     head->next=nullptr;
     return head;
 }
@@ -175,7 +175,7 @@ Node<T>* reverse(Node<T>* head){
 
 template<typename T>
 auto findcommon(Node<T>* head1, Node<T>* head2)->Node<T>*{
-    Node<T>* commonhead=list_init();
+    Node<T>* commonhead=list_init<T>();
     int index=0;
     Node<T>* pos_node1=head1->next;
     Node<T>* pos_node2=head2->next;

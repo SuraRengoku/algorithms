@@ -1,3 +1,6 @@
+#ifndef _vector_hpp
+#define _vector_hpp
+
 #include<iostream>
 #include<string>
 #include<vector>
@@ -40,7 +43,7 @@ class _Vector{
             }
         }
 
-        int get(int index){
+        T get(int index){
             checkIndex(index);
             return arr[index];
         }
@@ -68,7 +71,7 @@ class _Vector{
             arrSize++;
         }
         
-        int remove(int index){
+        T remove(int index){
             checkIndex(index);
             T num=arr[index];
             for(int j=index;j<size()-1;j++)
@@ -97,3 +100,5 @@ class _Vector{
             return vec;
         }
 };
+
+#endif

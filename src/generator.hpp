@@ -59,12 +59,12 @@ auto generator(int Maxsize, int Maxvalue)->pair<int*, int>{
     }
 }
 
-template<>
-auto generator(int Maxsize, int Maxvalue)->Node*{
+template<typename T>
+auto generator(int Maxsize, int Maxvalue)->Node<T>*{
     try{
         srand(static_cast<unsigned>(time(nullptr)));
         int len=(int)rand()%(Maxsize);
-        Node* head=list_init();
+        Node<T>* head=list_init<T>();
         for(int i=0;i<len;i++)
             head=insert(head,i,(int)rand()%Maxvalue-(int)rand()%Maxvalue);
         return head;

@@ -1,5 +1,8 @@
+#ifndef _queue_hpp
+#define _queue_hpp 
+
 #include<iostream>
-#include<singlelinkedlist.hpp>
+#include "singlelinkedlist.hpp"
 #include<vector>
 
 using std::vector;
@@ -177,7 +180,7 @@ class LinkedListDeque{
             }
         }
 
-        size()->int{
+        auto size()->int{
             return queSize;
         }
 
@@ -209,7 +212,7 @@ class LinkedListDeque{
             push(num, false);
         }
 
-        pop(bool isFront)->T{
+        auto pop(bool isFront)->T{
             if(isEmpty())
                 throw out_of_range("queue is empty");
             T val;
@@ -226,3 +229,5 @@ class LinkedListDeque{
             }
         }
 };
+
+#endif
