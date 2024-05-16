@@ -1,17 +1,17 @@
 #ifndef SegTree_hpp
 #define SegTree_hpp
 
+#include<iostream>
 #include<bits/stdc++.h>
 #include<limits>
 #include<type_traits>
 using namespace std;
 
-inline int bit_length(int n){
-    if(n==0) return 0;
-    return std::numeric_limits<int>::digits -__builtin_clz(n);
-}
+// template<typename T> requires std::is_arithmetic_v<T>
+template<typename T>
+concept IsNumber = std::is_arithmetic<T>::value;
 
-template<typename T> requires std::is_arithmetic_v<T>
+template<IsNumber T>
 class SegTreeLazyRange{
     vector<T> tree, lazy;
     vector<T> *arr;
@@ -89,10 +89,10 @@ class SegTreeLazyRange{
     }
 
     public:
-        explicit SegTreeLazyRangeAdd<T>(vector<T> v){ //explicit 关键字避免隐式转换
+        explicit SegTreeLazyRange<T>(vector<T> v){ //explicit 关键字避免隐式转换
             n=v.size();
             // n4=n*4;//开数组大小
-            n4=bit_length(n)*2;
+            n4=std::pow(2,bit_length(n)+1);
             tree=vector<T>(n4, 0);
             lazy=vector<T>(n4, 0);
             arr=&v; //拷贝
@@ -122,5 +122,10 @@ class SegTreeLazyRange{
             range_set(l, r, val, 0, end, root);
         }
 };
+
+inline int bit_length(int n){
+    if(n==0) return 0;
+    return std::numeric_limits<int>::digits -__builtin_clz(n);
+}
 
 #endif
