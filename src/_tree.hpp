@@ -75,6 +75,8 @@
 #include<type_traits>
 
 using std::vector;
+using std::queue;
+using std::string;
 
 template<typename T>
 concept IsNumber = std::is_arithmetic<T>::value;
@@ -114,20 +116,20 @@ vector<T> preOrder(TreeNode<T> *root){
 }
 //中序遍历
 template<IsNumber T> 
-vector<T> preOrder(TreeNode<T> *root){
+vector<T> inOrder(TreeNode<T> *root){
     if(root==nullptr) return;
     vector<T> vec;
-    preOrder(root->left);
+    inOrder(root->left);
     vec.push_back(root->val);
-    preOrder(root->right);
+    inOrder(root->right);
 }
 //后序遍历
 template<IsNumber T> 
-vector<T> preOrder(TreeNode<T> *root){
+vector<T> postOrder(TreeNode<T> *root){
     if(root==nullptr) return;
     vector<T> vec;
-    preOrder(root->left);
-    preOrder(root->right);
+    postOrder(root->left);
+    postOrder(root->right);
     vec.push_back(root->val);
 }
 
@@ -168,10 +170,10 @@ class ArrayBinaryTree{
         }
 
         int left(int i){
-            return 2i+1;
+            return 2*i+1;
         }
         int right(int i){
-            return 2i+2;
+            return 2*i+2;
         }
 
         int parent(int i){
