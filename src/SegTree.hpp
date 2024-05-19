@@ -25,7 +25,7 @@ class SegTreeLazyRange{
             tree[p*2]+=lazy[p]*(cm-cl+1);
             tree[p*2+1]+=lazy[p]*(cr-cm);
             lazy[p]=0;
-        }
+        }//初始状态lazy[]元素都是0
     }
 
     /**
