@@ -1,12 +1,15 @@
 #include<iostream>
+#include"BinarySearch.hpp"
 using namespace std;
 
 int main(){
-    // cout<<"hello,Jiahao!"<<endl;
-    // cout<<"another line"<<endl;
-    int l=3,r=4;
-    int mid=l+((r-l)>>1);
-    cout<<mid<<"\n";
-    cout<<"可以输出中文"<<endl;
+    // int l=3,r=4;
+    // int mid=l+((r-l)>>1);
+    // cout<<mid<<"\n";
+    // cout<<"可以输出中文"<<endl;
+
+    vector<int> nums={6,6,7,8,8,9};
+    cout<<lower_bound1(nums, 8)<<endl;
+
     return 0;
 }
