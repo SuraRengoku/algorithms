@@ -7,7 +7,8 @@ int main(){
     // int mid=l+((r-l)>>1);
     // cout<<mid<<"\n";
     // cout<<"可以输出中文"<<endl;
-    vector<int> nums={6,6,7,8,8,9};
+    vector<int> nums={4,5,5,5,6,7,8,8,9,10,11,12};
     int index=lower_bound1(nums, 8);
+    printf("%d",index);
     return 0;
 }
