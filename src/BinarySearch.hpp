@@ -22,6 +22,7 @@ auto lower_bound1(const vector<T>& nums, T target)->int{
         else
             right=mid-1;
     }
+    printf("left:%d,right:%d\n",left,right);
     return left; 
 }//左闭右闭
 
@@ -36,11 +37,27 @@ auto lower_bound2(const vector<T>& nums, T target)->int{
         else
             right=mid;
     }
+    printf("left:%d,right:%d\n",left,right);
     return left;
 }//左闭右开
 
 template<typename T> requires std::is_arithmetic_v<T>
 auto lower_bound3(const vector<T>& nums, T target)->int{
+    int left=-1;
+    int right=nums.size()-1;
+    while(left<right){
+        int mid=left+(right-left+1)/2;
+        if(nums[mid]<target)
+            left=mid;
+        else
+            right=mid-1;
+    }
+    printf("left:%d,right:%d\n",left,right);
+    return right+1;
+}//左开右闭
+
+template<typename T> requires std::is_arithmetic_v<T>
+auto lower_bound4(const vector<T>& nums, T target)->int{
     int left=-1;
     int right=nums.size();
     while(left+1<right){    
@@ -49,7 +66,8 @@ auto lower_bound3(const vector<T>& nums, T target)->int{
             left=mid;
         else
             right=mid;
-;    }
+    }
+    printf("left:%d,right:%d\n",left,right);
     return right;
 }//左开右开
 
