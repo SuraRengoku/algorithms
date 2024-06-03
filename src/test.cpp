@@ -22,5 +22,9 @@ int main(){
 
     vector<int> nums3={0,0,0,0,0,0};
     // cout<<lower_bound3(nums3,1);
+
+    vector<int> nums4={2,3,3,4,4,5};
+    int index5=lower_bound3(nums4,3);
+    cout<<"index5:"<<index5<<endl;
     return 0;
 }

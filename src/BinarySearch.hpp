@@ -12,7 +12,7 @@ template<typename T>
 concept IsNumber = std::is_arithmetic<T>::value;
 
 template<IsNumber T>
-auto lower_bound1(const vector<T>& nums, T target)->int{
+constexpr auto lower_bound1(const vector<T>& nums, T target)->int{
     int left=0;
     int right=nums.size()-1;
     while(left<=right){
@@ -27,7 +27,7 @@ auto lower_bound1(const vector<T>& nums, T target)->int{
 }//左闭右闭
 
 template<typename T> requires std::is_arithmetic_v<T>
-auto lower_bound2(const vector<T>& nums, T target)->int{
+constexpr auto lower_bound2(const vector<T>& nums, T target)->int{
     int left=0;
     int right=nums.size();
     while(left<right){
@@ -42,7 +42,7 @@ auto lower_bound2(const vector<T>& nums, T target)->int{
 }//左闭右开
 
 template<typename T> requires std::is_arithmetic_v<T>
-auto lower_bound3(const vector<T>& nums, T target)->int{
+constexpr auto lower_bound3(const vector<T>& nums, T target)->int{
     int left=-1;
     int right=nums.size()-1;
     while(left<right){
@@ -57,7 +57,7 @@ auto lower_bound3(const vector<T>& nums, T target)->int{
 }//左开右闭
 
 template<typename T> requires std::is_arithmetic_v<T>
-auto lower_bound4(const vector<T>& nums, T target)->int{
+constexpr auto lower_bound4(const vector<T>& nums, T target)->int{
     int left=-1;
     int right=nums.size();
     while(left+1<right){    
@@ -70,5 +70,9 @@ auto lower_bound4(const vector<T>& nums, T target)->int{
     printf("left:%d,right:%d\n",left,right);
     return right;
 }//左开右开
+
+
+
+
 
 #endif 
