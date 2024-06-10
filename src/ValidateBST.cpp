@@ -43,6 +43,36 @@ class Solution{
         //因为没有任何一个节点的val会大于LONG_MAX且小于LONG_MIN
         return {min(l_min,x),max(r_max,x)};
     }
+    
+    //Search in BTS
+    //前序
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(root==nullptr||root->val==val) return root;
+        else if(root->val<val) return searchBST(root->right,val); 
+        else
+            return searchBST(root->left,val);
+    }
+    //中序
+    TreeNode* searchBST(TreeNode* root, int val){
+        if(root==nullptr) return nullptr;
+        TreeNode *leftn=searchBST(root->left,val);
+        if(!leftn){
+            if(root->val==val) return root;
+            else
+                return searchBST(root->right,val);
+        }else
+            return leftn;    
+    }
+    //后序
+    TreeNode* searchBST(TreeNode* root, int val){
+        if(root==nullptr) return nullptr;
+        TreeNode *leftn=searchBST(root->left,val);
+        TreeNode *rightn=searchBST(root->right,val);
+        if(leftn==nullptr&&rightn==nullptr)
+            return root->val==val?root:nullptr;
+        if(leftn!=nullptr) return leftn;
+        else return rightn;
+    }
 };
 
 int main(){
