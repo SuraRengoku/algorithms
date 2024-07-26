@@ -1,10 +1,4 @@
-#include<string>
-#include<vector>
-#include<functional>
-
-using std::vector;
-using std::string;
-using std::function;
+#include "leetcodeheader.h"
 
 class Solution {
 public:
