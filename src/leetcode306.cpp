@@ -8,8 +8,8 @@ public:
         bool ans = false;
         int len = num.size();
         if(len < 3) return false;
-        vector<long long> path;
-        function<void(int)> dfs = [&](int index) -> void {
+        vector<long double> path;
+        function<void(int, int)> dfs = [&](int index, int cnt) -> void {
             if(index == len){
                 int nums = path.size();
                 if(nums < 3)
@@ -22,24 +22,24 @@ public:
                 return;
             }
             for(int i = index; i < len; ++i){
-                if(num[index] == '0'){
-                    path.emplace_back(stoll("0"));
-                    dfs(index + 1);
+                if(num[index] == '0' && i > index){
+                    return;
                 }else{
-                    path.emplace_back(stoll(num.substr(index, i - index + 1)));
-                    dfs(i + 1);
+                    path.emplace_back(stold(num.substr(index, i - index + 1)));
+                    dfs(i + 1, cnt + 1);
                 }
                 path.pop_back();
             }
         };
-        dfs(0);
+        dfs(0, 0);
         return ans;
     }
 };
 
 int main(){
     Solution solution;
-    string digits = "101020305080130210";
-    cout << solution.isAdditiveNumber(digits) << endl;
+    string digits1 = "101020305080130210";
+    string digits2 = "0000";
+    cout << solution.isAdditiveNumber(digits2) << endl;
     return 0;
 }

@@ -8,6 +8,9 @@
 #include<queue>
 #include<unordered_map>
 #include<functional>
+#include<ranges>
+#include<numeric>
+#include<set>
 
 using std::cout;
 using std::endl;
@@ -18,6 +21,8 @@ using std::function;
 using std::stack;
 using std::queue;
 using std::unordered_map;
+using std::accumulate;
+using std::set;
 
 template<typename T>
 
