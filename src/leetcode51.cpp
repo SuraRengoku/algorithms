@@ -6,6 +6,7 @@ class Solution1 {
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
+        next_permutation(ans.begin(), ans.end());
         vector<int> col(n, 0);
         vector<string> result;
         vector<bool> on_path(n, false), digL(n, false), digR(n, false);
