@@ -23,6 +23,7 @@ using std::queue;
 using std::unordered_map;
 using std::accumulate;
 using std::set;
+using std::max;
 
 template<typename T>
 
