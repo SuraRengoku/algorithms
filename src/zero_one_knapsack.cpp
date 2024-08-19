@@ -15,6 +15,22 @@ class Zero_One_KnapSack {
     }
 };
 
+class Unbounded_Knapsack {
+    Unbounded_Knapsack() = delete;
+    int unbounded_knapsack(int capacity, vector<int> weights, vector<int> values) {
+        int len = weights.size();
+        function<int(int, int)> dfs = [&](int idx, int c) -> int {
+            if(idx < 0)
+                return 0;
+            if(c < weights[idx])
+                return dfs(idx - 1, c);
+            return max(dfs(idx - 1, c), dfs(idx, c - weights[idx]) + values[idx]);
+        };
+        return dfs(len - 1, capacity);
+    }
+};
+
+
 int main() {
     //TODO testcase
     return 0;
