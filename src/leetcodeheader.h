@@ -24,6 +24,7 @@ using std::unordered_map;
 using std::accumulate;
 using std::set;
 using std::max;
+using std::min;
 
 template<typename T>
 
