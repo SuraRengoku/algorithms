@@ -1,4 +1,5 @@
 #include<iostream>
+#include <math.h>
 #include"BinarySearch.hpp"
 using namespace std;
 
@@ -26,5 +27,10 @@ int main(){
     vector<int> nums4={2,3,3,4,4,5};
     int index5=lower_bound3(nums4,3);
     cout<<"index5:"<<index5<<endl;
+
+    int floor = sqrt(4);
+    cout << floor << endl;
+    floor = pow(64, 1.0f / 3);
+    cout << floor << endl;
     return 0;
 }
