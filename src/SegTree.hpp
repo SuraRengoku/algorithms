@@ -2,7 +2,7 @@
 #define SegTree_hpp
 
 #include<iostream>
-#include<bits/stdc++.h>
+// #include<bits/stdc++.h>
 #include<limits>
 #include<type_traits>
 using namespace std;
