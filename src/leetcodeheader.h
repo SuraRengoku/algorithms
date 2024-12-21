@@ -14,6 +14,8 @@
 #include<set>
 #include<algorithm>
 #include<ranges>
+#include<chrono>
+#include<utility>
 
 using std::cout;
 using std::endl;
@@ -31,6 +33,10 @@ using std::max;
 using std::min;
 using std::lower_bound;
 using std::swap;
+using std::priority_queue;
+using std::move;
+using std::pair;
+using std::make_pair;
 
 template<typename T>
 
