@@ -25,9 +25,35 @@ public:
         }
 
         for(int i = 0; i < len; ++i) {
-            ans = max(anx, heights[i] * (rmono[i] - lmono[i] - 1));
+            ans = max(ans, heights[i] * (rmono[i] - lmono[i] - 1));
         }
         return ans;
     }
 }
 
+class Solution2 {
+public:
+    int largestRectangleArea(vector<int> &heights) {
+        int ans = 0;
+        int len = heights.size();
+        vector<int> lmono(len, -1);
+        vector<int> rmono(len, len);
+        stack<int> sstk, bstk;
+        for(int i = 0; i < len; ++i) {
+            while(!sstk.empty() && heights[i] <= heights[sstk.top()])
+                sstk.pop();
+            if(!sstk.empty())
+                lmono[i] = sstk.top();
+            sstk.push(i);
+            
+            while(!bstk.empty() && heights[i] < heights[bstk.top()]) {
+                rmono[bstk.top()] = i;
+                bstk.pop();
+            }
+            bstk.push(i);
+        }
+        for(int i = 0; i < len; ++i) 
+            ans = max(ans, heights[i] * (rmono[i] - lmono[i] - 1));
+        return ans;
+    }
+}
