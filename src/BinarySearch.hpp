@@ -1,10 +1,10 @@
 #ifndef BinarySearch_hpp
 #define BinarySearch_hpp
 
-#include<vector>
-#include<limits>
-#include<type_traits>
-#include<concepts>
+#include <vector>
+#include <limits>
+#include <type_traits>
+#include <concepts>
 
 using std::vector;
 

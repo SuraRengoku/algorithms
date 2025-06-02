@@ -1,6 +1,7 @@
-#include<iostream>
-#include<utility>
-#include<algorithm>
+#include <iostream>
+#include <utility>
+#include <algorithm>
+#include <climits>
 
 namespace BTS{
     struct TreeNode{
@@ -46,28 +47,28 @@ class Solution{
     
     //Search in BTS
     //前序
-    TreeNode* searchBST(TreeNode* root, int val) {
+    TreeNode* searchBSTF(TreeNode* root, int val) {
         if(root==nullptr||root->val==val) return root;
-        else if(root->val<val) return searchBST(root->right,val); 
+        else if(root->val<val) return searchBSTF(root->right,val); 
         else
-            return searchBST(root->left,val);
+            return searchBSTF(root->left,val);
     }
     //中序
-    TreeNode* searchBST(TreeNode* root, int val){
+    TreeNode* searchBSTM(TreeNode* root, int val){
         if(root==nullptr) return nullptr;
-        TreeNode *leftn=searchBST(root->left,val);
+        TreeNode *leftn=searchBSTM(root->left,val);
         if(!leftn){
             if(root->val==val) return root;
             else
-                return searchBST(root->right,val);
+                return searchBSTM(root->right,val);
         }else
             return leftn;    
     }
     //后序
-    TreeNode* searchBST(TreeNode* root, int val){
+    TreeNode* searchBSTB(TreeNode* root, int val){
         if(root==nullptr) return nullptr;
-        TreeNode *leftn=searchBST(root->left,val);
-        TreeNode *rightn=searchBST(root->right,val);
+        TreeNode *leftn=searchBSTB(root->left,val);
+        TreeNode *rightn=searchBSTB(root->right,val);
         if(leftn==nullptr&&rightn==nullptr)
             return root->val==val?root:nullptr;
         if(leftn!=nullptr) return leftn;

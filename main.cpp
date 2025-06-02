@@ -1,5 +1,7 @@
-#include <iostream>
+#include "src/hot100/bestStocks.hpp"
 
 int main(int, char**){
-    std::cout << "Hello, from test!\n";
+    bestStocks bestS;
+    vector<int> prices{};
+    cout << bestS.solution2(prices) << endl;
 }

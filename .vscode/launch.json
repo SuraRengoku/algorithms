@@ -2,14 +2,24 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug with LLDB",
-      "type": "lldb",
+      "name": "Debug with GDB",
+      "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/main.exe",
-      "args": [],
-      "cwd": "${workspaceFolder}",
-      "stopAtEntry": false,
-      "externalConsole": false
+      "program": "${workspaceFolder}/build/Algorithm",   // 可执行文件路径
+      "args": [],                              // 传给程序的参数
+      "stopAtEntry": false,                    // 是否在程序入口处暂停
+      "cwd": "${workspaceFolder}",             // 当前工作目录
+      "environment": [],
+      "externalConsole": false,                // 是否使用外部终端
+      "MIMode": "gdb",                         // 使用 GDB 模式
+      "miDebuggerPath": "/usr/bin/gdb",        // GDB 的路径，WSL中可能是/usr/bin/gdb
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
     }
   ]
 }

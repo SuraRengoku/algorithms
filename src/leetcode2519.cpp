@@ -1,4 +1,6 @@
 #include "leetcodeheader.h"
+#include <climits>
+#include <cmath>
 
 class Solution1 {
 public:
