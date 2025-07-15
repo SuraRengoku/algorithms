@@ -9,9 +9,9 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-class Solution1 {
+class palindromeList {
 public:
-    bool isPalindrome(ListNode *head) {
+    bool isPalindrome1(ListNode *head) {
         auto reverseList = [&](ListNode *head) -> ListNode* {
             ListNode *pre = nullptr, *cur = head;
             while(cur) {
@@ -41,11 +41,8 @@ public:
         }
         return true;
     }
-};
 
-class Solution2 {
-public:
-    bool isPalindrome(ListNode *head) {
+    bool isPalindrome2(ListNode *head) {
         auto reverseList = [&](ListNode *head) -> ListNode* {
             ListNode *pre = nullptr, *cur = head;
             while(cur) {

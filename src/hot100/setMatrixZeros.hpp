@@ -1,8 +1,8 @@
 #include "../leetcodeheader.h"
 
-class Solution {
+class setZeroes {
 public:
-    void setZeros(vector<vector<int>>& matrix) {
+    void set1(vector<vector<int>>& matrix) {
         int rowlen = matrix.size(), collen = matrix[0].size();
         int row0 = false, col0 = false;
         for(int j = 0; j < collen; ++j) {
@@ -36,6 +36,25 @@ public:
         if(col0) {
             for(int i = 0; i < rowlen; ++i)
                 matrix[i][0] = 0;
+        }
+    }
+
+    void set2(vector<vector<int>>& matrix) {
+        int row = matrix.size(), col = matrix[0].size();
+        vector<int> markR(row, 0), markC(col, 0);
+
+        for(int i = 0; i < row; ++i) {
+            for(int j = 0; j < col; ++j) {
+                if(!matrix[i][j])
+                    markR[i] = markC[j] = 1;
+            }
+        }
+
+        for(int i = 0; i < row; ++i) {
+            for(int j = 0; j < col; ++j) {
+                if(markR[i] || markC[j])
+                    matrix[i][j] = 0; 
+            }
         }
     }
 };

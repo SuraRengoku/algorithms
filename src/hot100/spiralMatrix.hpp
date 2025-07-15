@@ -6,7 +6,7 @@ public:
         vector<int> res;
         if(matrix.empty())
             return res;
-        int l = 0, t = 0, r = matrix[0].size(), b = matrix.size();
+        int l = 0, t = 0, r = matrix[0].size() - 1, b = matrix.size() - 1;
         while(true) {
             for(int i = l; i <= r; ++i) res.push_back(matrix[t][i]);
             if(++t > b) break;

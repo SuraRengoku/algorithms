@@ -1,8 +1,8 @@
 #include "../leetcodeheader.h"
 
-class Solution1 {
+class maxinumSubarray {
 public:
-    int maxSubArray(vector<int>& nums){
+    int maxSubArray1(vector<int>& nums){
         int res = INT_MIN;
         int preMin = 0;
         int preSum = 0;
@@ -13,16 +13,15 @@ public:
         }
         return res;
     }
-};
 
-class Solution2 {
-public:
-    int maxSubArray(vector<int>& nums) {
+    int maxSubArray2(vector<int>& nums) {
         int len = nums.size();
         vector<int> cache(len);
         cache[0] = nums[0];
         for(int i = 1; i < len; ++i)
-            cache[i] = max(cache[i - 1], 0) + nums[i];
-        return *max_element(cache.begin(), cache.end());
+            cache[i] = max(cache[i - 1], 0) + nums[i]; 
+        // if the former value is positive, it can enlarge the result. Otherwise, it can only shrink the result, so drop it.
+        // return *max_element(cache.begin(), cache.end());
+        return std::ranges::max(cache);
     }
 };

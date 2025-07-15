@@ -1,8 +1,8 @@
 #include "../leetcodeheader.h"
 
-class Solution {
+class SubarraySum {
 public:
-    int subarraySum(vector<int>& nums, int k) {
+    int Sum1(vector<int>& nums, int k) {
         int len = nums.size();
         vector<int> preSum(len + 1);
         for(int i = 0; i < len; ++i) 
@@ -13,6 +13,20 @@ public:
         for(const int ps : preSum){
             ans += cnt.contains(ps - k) ? cnt[ps - k] : 0;
             cnt[ps]++;
+        }
+        return ans;
+    }
+
+    int Sum2(vector<int>& nums, int k) {
+        int len = nums.size();
+        vector<int> preSum(len + 1, 0);
+        for(int i = 0; i < len; preSum[i + 1] = preSum[i] + nums[i], ++i);
+
+        int ans = 0;
+        for(int i = 0; i < len; ++i) {
+            for(int j = 0; j <= i; ++j)
+                if(preSum[i + 1] - preSum[j] == k)
+                    ans++;
         }
         return ans;
     }

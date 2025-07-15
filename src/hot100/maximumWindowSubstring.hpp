@@ -20,9 +20,9 @@ public:
             tmap[c]++;
         unordered_map<char, int> windowmap;
         string res = "";
-        int left = 0;
+        int left = 0, right = 0;
         int left_ans = -1, right_ans = lens;
-        for(int right = 0; right < lens; ++right) {
+        while(right < lens) {
             windowmap[s[right]]++;
             while(covering(windowmap, tmap)) {
                 if(right - left < right_ans - left_ans) {
@@ -31,6 +31,7 @@ public:
                 }
                 windowmap[s[left++]]--;
             }
+            ++right;
         }
         return left_ans < 0 ? "" : s.substr(left_ans, right_ans - left_ans + 1);
     }

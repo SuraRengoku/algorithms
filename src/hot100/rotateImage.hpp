@@ -1,9 +1,9 @@
 #include "../leetcodeheader.h"
 
-class Solution1 {
+class rotateImage {
 public:
     //matrix n * n
-    void rotate(vector<vector<int>>& matrix) {
+    void rotate1(vector<vector<int>>& matrix) {
         int len = matrix.size();
         for(int i = 0; i < len - 1; ++i) {
             for(int j = i + 1; j < len; ++j)
@@ -14,12 +14,14 @@ public:
             while(m < n) 
                 swap(matrix[i][m++], matrix[i][n--]);
         }
+        // alternative
+        // for(int i = 0; i < len; ++i) {
+        //     for(int j = 0; j < len / 2; ++j)
+        //         swap(matrix[i][j], matrix[i][len - j - 1]);
+        // }
     }
-};
 
-class Solution2 {
-public:
-    void rotate(vector<vector<int>>& matrix) {
+    void rotate2(vector<vector<int>>& matrix) {
         int len = matrix.size();
         int collimit = len % 2 ? (len + 1) / 2 : len / 2;
         for(int i = 0; i < len / 2; ++i) {

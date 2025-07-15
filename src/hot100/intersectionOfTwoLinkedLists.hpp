@@ -3,12 +3,12 @@
 struct ListNode {
     int val;
     ListNode *next;
-    ListNode(int x) : val(x), next(NULL) {}
+    ListNode(int x) : val(x), next(nullptr) {}
 };
 
-class Solution1 {
+class intersectionLinkedLists {
 public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode *getIntersectionNode1(ListNode *headA, ListNode *headB) {
         ListNode *tmp = headA;
         while(tmp -> next != nullptr)
             tmp = tmp -> next;
@@ -31,11 +31,8 @@ public:
         tmp -> next = nullptr;
         return nullptr;
     }
-};
 
-class Solution2 {
-public:
-    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+    ListNode *getIntersectionNode2(ListNode *headA, ListNode *headB) {
         if(headA == nullptr || headB == nullptr)
             return nullptr;
         ListNode *pA = headA, *pB = headB;
